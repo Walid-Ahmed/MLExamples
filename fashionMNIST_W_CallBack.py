@@ -1,6 +1,7 @@
 import numpy as np
 from tensorflow import keras
 from keras.datasets import fashion_mnist
+import   tensorflow as tf
 
 
 print(tf.__version__)
