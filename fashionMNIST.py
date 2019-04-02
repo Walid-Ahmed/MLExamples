@@ -4,7 +4,7 @@ from keras.datasets import fashion_mnist
 import   tensorflow as tf
 
 
-Fashion_MNIST=[0:'T-shirt',1:'Trouser',2:'Pullover',3:'Dress',4:'Coat',5:'Sandal',6:'Shirt',7:'Sneaker',8:'Bag',9:'Ankle boot']
+Fashion_MNIST={0:'T-shirt',1:'Trouser',2:'Pullover',3:'Dress',4:'Coat',5:'Sandal',6:'Shirt',7:'Sneaker',8:'Bag',9:'Ankle boot'}
 print(tf.__version__)
 
 
@@ -75,19 +75,19 @@ print("*********************************************************")
 print("[INFO] The detected classes are:")
 classes=model.predict_classes(test_images)
 print(classes)
+
+# printing prediction of a single image
+print("An image with ground truth label {0} is classified as  {1} with probabilty to belong to 10 classes as  {2}".format(test_labels[0],classes[0],classificationsProbs[0]))
 print("*********************************************************")
 
 
 
-#print(classificationsProbs[0])
-#print(classes[0])
-#print(test_labels[0])
-print("An image with ground truth label {0} is classified as  {1} with probabilty {2}".format(test_labels[0],classes[0],classificationsProbs[0]))
+#testing o a single image
 image=test_images[0]    # test image is of shape (28, 28)
 image = np.expand_dims(image, axis=0)  #make its shape     (1, 28, 28)
-predictedClassID=model.predict_classes(image)
-print(predictedClassID)   #key = predictedClassID    in Fashion_MNIST
 
+predictedClassID=model.predict_classes(image)
+predictedClassID=predictedClassID.item(0)  # turn numpy array to scaler integer value
 clothType=Fashion_MNIST[predictedClassID]
 print("predictedClassID is {0}  with label {1}".format(predictedClassID,clothType))
 
