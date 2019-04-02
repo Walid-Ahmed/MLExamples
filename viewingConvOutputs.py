@@ -39,7 +39,7 @@ FIRST_IMAGE=0
 SECOND_IMAGE=7
 THIRD_IMAGE=26
 CONVOLUTION_NUMBER = 1
-from tensorflow.keras import models
+
 layer_outputs = [layer.output for layer in model.layers]
 activation_model = tf.keras.models.Model(inputs = model.input, outputs = layer_outputs)
 for x in range(0,4):
