@@ -221,6 +221,8 @@ history = model.fit_generator(train_generator,
 Let's now take a look at actually running a prediction using the model. This code will allow you to choose 1 or more files from your file system, it will then upload them, and run them through the model, giving an indication of whether the object is a dog or a cat.
 """
 
+
+model.save()
 import numpy as np
 
 from keras.preprocessing import image
@@ -240,11 +242,12 @@ for file in os.listdir(path):
   x=np.expand_dims(x, axis=0)
   images = np.vstack([x])
   classes = model.predict(images, batch_size=10)
-    
+  print(type(classes))  
   
   print(classes[0])
+  model.save("catVsDog.keras")
   
-  if classes[0]>0:
+  if classes[0]>0:     #1  is a dog
     print(fn + " is a dog")
     
   else:
